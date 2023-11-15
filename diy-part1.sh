@@ -19,4 +19,21 @@
 # echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 # echo 'src-git sundaqiang https://github.com/sundaqiang/openwrt-packages-backup' >>feeds.conf.default
 
-svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
+#svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
+feed() {
+    if [ -n "$3" ] ;then
+        echo "src-git $1 $2;$3" >>feeds.conf.default
+    else
+        echo "src-git $1 $2" >>feeds.conf.default
+    fi
+}
+
+# Uncomment a feed source
+#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+
+# Add a feed source
+#feed helloworld https://github.com/fw876/helloworld
+#feed turbocc https://github.com/chenmozhijin/turboacc.git luci
+
+feed nuexini https://github.com/NueXini/NueXini_Packages.git
+feed kiddin9 https://github.com/kiddin9/openwrt-packages.git
